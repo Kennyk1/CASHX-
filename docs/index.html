@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Registration - CASHX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="register.css" />
 </head>
 <body>
 
@@ -40,7 +40,7 @@
 
     <div class="header-section">
         <div class="logo-container">
-            <img src="https://i.ibb.co/ZzNFQbRx/918-CFC59-9989-4-D61-8605-1-BFDAADADD57.jpg" alt="CASHX Logo" class="logo">
+            <img src="https://i.ibb.co/ZzNFQbRx/918-CFC59-9989-4-D61-8605-1-BFDAADADD57.jpg" alt="CASHX Logo" class="logo" />
             <div class="logo-badge">
                 <i class="fas fa-check"></i>
             </div>
@@ -61,7 +61,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-user input-icon"></i>
-                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required />
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                    <input type="email" id="email" placeholder="your.email@example.com" required />
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-at input-icon"></i>
-                    <input type="text" id="username" placeholder="Choose a username" required>
+                    <input type="text" id="username" placeholder="Choose a username" required />
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-user-tie input-icon"></i>
-                    <input type="text" id="referrer" placeholder="Referrer username or ID">
+                    <input type="text" id="referrer" placeholder="Referrer username or ID" />
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
                 <div class="password-container">
                     <div class="input-with-icon">
                         <i class="fas fa-key input-icon"></i>
-                        <input type="password" id="password" placeholder="Create a strong password" required>
+                        <input type="password" id="password" placeholder="Create a strong password" required />
                     </div>
                     <i class="fa-regular fa-eye-slash toggle-password" id="toggleEye"></i>
                 </div>
@@ -129,7 +129,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-mobile-alt input-icon"></i>
-                    <input type="tel" id="phone" placeholder="Your phone number" required>
+                    <input type="tel" id="phone" placeholder="Your phone number" required />
                 </div>
             </div>
 
@@ -139,7 +139,7 @@
                 </label>
                 <div class="input-with-icon">
                     <i class="fas fa-ticket-alt input-icon"></i>
-                    <input type="text" id="couponCode" placeholder="Enter coupon code">
+                    <input type="text" id="couponCode" placeholder="Enter coupon code" />
                 </div>
             </div>
 
@@ -156,19 +156,17 @@
                     <i class="fas fa-box-open input-icon"></i>
                     <select id="packageType" required>
                         <option value="">Select Package</option>
-                        <option value="Basic">Basic </option>
-                        <option value="Premium">Premium </option>
-                        <option value="Enterprise">Enterprise </option>
+                        <option value="Basic">Basic</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Enterprise">Enterprise</option>
                     </select>
                     <i class="fas fa-chevron-down select-icon"></i>
                 </div>
             </div>
 
             <div class="terms-container">
-                <input type="checkbox" id="terms" required>
-                <label for="terms">
-                    Terms & Conditions
-                </label>
+                <input type="checkbox" id="terms" required />
+                <label for="terms">Terms & Conditions</label>
             </div>
 
             <button type="submit" class="btn-signup">
@@ -179,10 +177,35 @@
         <p class="footer-text">
             Already have an account? <a href="login.html">Sign In Here</a>
         </p>
+    </div>
 
+    <!-- OTP Verification Modal -->
+    <div id="otpModal" class="otp-modal hidden">
+        <div class="otp-container">
+            <button id="otpBackBtn" class="otp-back-btn" title="Go back to registration">&#8592;</button>
+            <div class="otp-icon">
+                <i class="fas fa-mobile-alt"></i>
+                <div class="otp-bubble">***</div>
+            </div>
+            <h2>Enter the code</h2>
+            <p class="otp-message">CashX you will receive an OTP to confirm your registration to CashX.</p>
+            <form id="otpForm" autocomplete="off">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                </div>
+                <button type="submit" class="btn-verify">Verify</button>
+            </form>
+            <button id="resendCode" class="resend-link">Didn't receive the code?</button>
+        </div>
     </div>
 
     <script src="register.js"></script>
 
 </body>
-  </html>
+                </html>
+    
