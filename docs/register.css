@@ -81,97 +81,49 @@ body {
   align-items: center;
   font-family: 'Inter', sans-serif;
   flex-direction: column;
-  padding: 20px;
-}
-
-.hidden {
-  display: none !important;
+  padding: 16px 12px;
 }
 
 .otp-container {
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
   text-align: center;
   position: relative;
-}
-
-.otp-back-btn {
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  background: transparent;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #333;
-  padding: 8px 12px;
-  transition: color 0.3s ease;
-}
-
-.otp-back-btn:hover {
-  color: #0066da;
-}
-
-.otp-icon {
-  margin-bottom: 18px;
-  position: relative;
-  display: inline-block;
-}
-
-.otp-icon i {
-  font-size: 48px;
-  color: #0066da;
-}
-
-.otp-bubble {
-  position: absolute;
-  top: 4px;
-  right: -30px;
-  background: #0066da;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-  border-radius: 12px;
-  padding: 6px 12px;
-  user-select: none;
-}
-
-.otp-container h2 {
-  font-weight: 700;
-  font-size: 22px;
-  margin-bottom: 8px;
-  color: #222;
-}
-
-.otp-message {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 24px;
-  padding: 0 8px;
+  box-sizing: border-box;
+  padding: 0 12px;
 }
 
 .otp-inputs {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 24px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .otp-inputs input {
-  width: 44px;
-  height: 50px;
-  font-size: 28px;
+  flex: 1 1 40px;
+  max-width: 40px;
+  height: 48px;
+  font-size: 24px;
   font-weight: 700;
   text-align: center;
   border: 2px solid #ccc;
   border-radius: 8px;
   outline: none;
   transition: border-color 0.3s ease;
+  color: #222;
+  background-color: #fff;
+  box-sizing: border-box;
+  caret-color: #0066da;
 }
 
 .otp-inputs input:focus {
   border-color: #0066da;
   box-shadow: 0 0 8px rgba(0, 102, 218, 0.4);
+  background-color: #fff;
 }
 
 .btn-verify {
@@ -206,6 +158,34 @@ body {
   color: #004a9e;
 }
 
+.otp-back-btn {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.otp-back-btn:hover {
+  color: #0066da;
+}
+
+@media (max-width: 320px) {
+  .otp-inputs input {
+    max-width: 36px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .otp-container {
+    max-width: 280px;
+  }
+}
 
 .nav-dropdown {
     position: absolute;
