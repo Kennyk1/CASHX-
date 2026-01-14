@@ -173,11 +173,10 @@ body {
 }
 
 .welcome-text {
-    color: var(--secondary-blue);
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 0;
-}
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5); /* This gives the text a subtle neon glow */
+    }
+    
 
 .card {
     background: rgba(255, 255, 255, 0.1); 
