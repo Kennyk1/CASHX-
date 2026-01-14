@@ -1,13 +1,64 @@
-// Form Submission
+// Elements
 const registerForm = document.getElementById('registerForm');
+const otpModal = document.getElementById('otpModal');
+const otpForm = document.getElementById('otpForm');
+const otpInputs = otpModal.querySelectorAll('.otp-inputs input');
+const otpBackBtn = document.getElementById('otpBackBtn');
+const resendCodeBtn = document.getElementById('resendCode');
 
-registerForm.addEventListener('submit', async (e) => {
+// Show OTP modal on register submit instead of immediate registration
+registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
+    // Clear OTP inputs and show modal
+    otpInputs.forEach(input => input.value = '');
+    otpModal.classList.remove('hidden');
+    otpInputs[0].focus();
+});
+
+// Back button closes OTP modal and returns to registration page
+otpBackBtn.addEventListener('click', () => {
+    otpModal.classList.add('hidden');
+    // Optional: redirect or just hide modal
+    // window.location.href = 'register.html';
+});
+
+// Resend code button placeholder
+resendCodeBtn.addEventListener('click', () => {
+    alert('A new OTP code has been sent to your phone.');
+    otpInputs.forEach(input => input.value = '');
+    otpInputs[0].focus();
+});
+
+// Auto-focus next input on typing and backspace to previous
+otpInputs.forEach((input, idx) => {
+    input.addEventListener('input', () => {
+        if (input.value.length === 1 && idx < otpInputs.length - 1) {
+            otpInputs[idx + 1].focus();
+        }
+    });
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && idx > 0) {
+            otpInputs[idx - 1].focus();
+        }
+    });
+});
+
+// OTP form submission triggers actual registration (no real OTP verification yet)
+otpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const otpCode = Array.from(otpInputs).map(input => input.value).join('');
+    if (otpCode.length !== otpInputs.length) {
+        alert('Please enter the complete 6-digit OTP code.');
+        return;
+    }
+
+    // Proceed with registration as before
     const submitBtn = registerForm.querySelector('button[type="submit"]');
     const originalBtnText = submitBtn.innerHTML;
-    
-    // Gather data
+
+    // Gather data from registration form
     const formData = {
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
@@ -21,7 +72,7 @@ registerForm.addEventListener('submit', async (e) => {
         terms: document.getElementById('terms').checked
     };
 
-    // Basic Client-side Validation (HTML5 'required' handles most empty checks)
+    // Basic password length check
     if (formData.password.length < 6) {
         alert('Password must be at least 6 characters long.');
         return;
@@ -33,22 +84,18 @@ registerForm.addEventListener('submit', async (e) => {
 
         const response = await fetch('/api/auth/register', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            // Success
             alert('Registration successful! Redirecting to login...');
-            // Store token if needed, or just redirect
+            // Optionally store token here
             // localStorage.setItem('token', data.token);
             window.location.href = 'login.html';
         } else {
-            // Error
             alert(data.message || 'Registration failed');
         }
     } catch (error) {
@@ -57,6 +104,7 @@ registerForm.addEventListener('submit', async (e) => {
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
+        otpModal.classList.add('hidden'); // Hide OTP modal after attempt
     }
 });
 
@@ -64,21 +112,21 @@ registerForm.addEventListener('submit', async (e) => {
 const togglePassword = document.querySelector('#toggleEye');
 const password = document.querySelector('#password');
 
-togglePassword.addEventListener('click', function (e) {
+togglePassword.addEventListener('click', () => {
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
     password.setAttribute('type', type);
-    this.classList.toggle('fa-eye');
-    this.classList.toggle('fa-eye-slash');
+    togglePassword.classList.toggle('fa-eye');
+    togglePassword.classList.toggle('fa-eye-slash');
 });
 
 // Add focus effects for inputs
 const inputs = document.querySelectorAll('input, select');
 inputs.forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.parentElement.classList.add('focused');
+    input.addEventListener('focus', () => {
+        input.parentElement.parentElement.classList.add('focused');
     });
-    input.addEventListener('blur', function() {
-        this.parentElement.parentElement.classList.remove('focused');
+    input.addEventListener('blur', () => {
+        input.parentElement.parentElement.classList.remove('focused');
     });
 });
 
@@ -86,17 +134,22 @@ inputs.forEach(input => {
 const hamburgerMenu = document.getElementById('hamburgerMenu');
 const navDropdown = document.getElementById('navDropdown');
 
-hamburgerMenu.addEventListener('click', function() {
+hamburgerMenu.addEventListener('click', () => {
     navDropdown.classList.toggle('active');
-    // Animate hamburger lines
-    const lines = this.querySelectorAll('.hamburger-line');
-    lines[0].style.transform = navDropdown.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-    lines[1].style.opacity = navDropdown.classList.contains('active') ? '0' : '1';
-    lines[2].style.transform = navDropdown.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
+    const lines = hamburgerMenu.querySelectorAll('.hamburger-line');
+    if (navDropdown.classList.contains('active')) {
+        lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        lines[1].style.opacity = '0';
+        lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    } else {
+        lines[0].style.transform = 'none';
+        lines[1].style.opacity = '1';
+        lines[2].style.transform = 'none';
+    }
 });
 
 // Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', (event) => {
     if (!navDropdown.contains(event.target) && !hamburgerMenu.contains(event.target)) {
         navDropdown.classList.remove('active');
         const lines = hamburgerMenu.querySelectorAll('.hamburger-line');
@@ -105,3 +158,4 @@ document.addEventListener('click', function(event) {
         lines[2].style.transform = 'none';
     }
 });
+    
