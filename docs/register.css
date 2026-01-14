@@ -71,6 +71,142 @@ body {
     transition: all 0.3s ease;
 }
 
+.otp-modal {
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.otp-container {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  position: relative;
+}
+
+.otp-back-btn {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.otp-back-btn:hover {
+  color: #0066da;
+}
+
+.otp-icon {
+  margin-bottom: 18px;
+  position: relative;
+  display: inline-block;
+}
+
+.otp-icon i {
+  font-size: 48px;
+  color: #0066da;
+}
+
+.otp-bubble {
+  position: absolute;
+  top: 4px;
+  right: -30px;
+  background: #0066da;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 12px;
+  padding: 6px 12px;
+  user-select: none;
+}
+
+.otp-container h2 {
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.otp-message {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.otp-inputs input {
+  width: 44px;
+  height: 50px;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.otp-inputs input:focus {
+  border-color: #0066da;
+  box-shadow: 0 0 8px rgba(0, 102, 218, 0.4);
+}
+
+.btn-verify {
+  width: 100%;
+  padding: 14px 0;
+  background: #0066da;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-verify:hover {
+  background: #004a9e;
+}
+
+.resend-link {
+  margin-top: 18px;
+  background: none;
+  border: none;
+  color: #0066da;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.resend-link:hover {
+  color: #004a9e;
+}
+
+
 .nav-dropdown {
     position: absolute;
     top: 60px;
